@@ -671,7 +671,7 @@ class PHPMailerAfterSendingTest extends PHPMailerTestCase
         $this->setReflectionPropertyValue('startTimestamp', 1724932393.008985);
         $this->setReflectionPropertyValue('Mailer', 'smtp');
         $this->setReflectionPropertyValue('MIMEHeader', 'Content-Type: text/plain');
-        $this->setReflectionPropertyValue('MIMEBody', $string . 'E984TBDFDAKJF');
+        $this->setReflectionPropertyValue('MIMEBody', base64_encode($string . 'E984TBDFDAKJF'));
         $this->setReflectionPropertyValue('analyticsDetailLevel', AnalyticsDetailLevel::Detailed);
         $this->setReflectionPropertyValue('SMTPOptions', [ 'SMTPExtra' => 'extra_value' ]);
 
@@ -771,7 +771,7 @@ class PHPMailerAfterSendingTest extends PHPMailerTestCase
         $this->setReflectionPropertyValue('startTimestamp', 1724932393.008985);
         $this->setReflectionPropertyValue('Mailer', 'smtp');
         $this->setReflectionPropertyValue('MIMEHeader', 'Content-Type: text/plain');
-        $this->setReflectionPropertyValue('MIMEBody', $string . 'E984TBDFDAKJF');
+        $this->setReflectionPropertyValue('MIMEBody', base64_encode($string . 'E984TBDFDAKJF'));
         $this->setReflectionPropertyValue('analyticsDetailLevel', AnalyticsDetailLevel::Full);
         $this->setReflectionPropertyValue('SMTPOptions', [ 'SMTPExtra' => 'extra_value' ]);
 

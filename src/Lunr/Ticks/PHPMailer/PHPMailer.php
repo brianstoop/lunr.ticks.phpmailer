@@ -255,7 +255,7 @@ class PHPMailer extends BaseMailer
             $options = json_encode($options + $extra);
 
             $fields['requestHeaders'] = is_bool($headers) ? NULL : $headers;
-            $fields['requestBody']    = $this->prepareLogData($this->MIMEBody);
+            $fields['requestBody']    = $this->prepareLogData(base64_decode($this->MIMEBody));
             $fields['options']        = is_bool($options) ? NULL : $options;
 
             unset($headers, $options);

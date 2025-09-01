@@ -28,6 +28,11 @@ class PHPMailerFailureHookTest extends PHPMailerTestCase
     {
         $this->mockFunction('microtime', fn() => 1724932394.128985);
 
+        $MIMEBody = 'SGksCllvdXIgTXlUQUcgb25lLXRpbWUgdmVyaWZpY2F0aW9uIGNvZGUgaXMKCjcwOTMzNiAKClBs
+                     ZWFzZSBkbyBub3Qgc2hhcmUgdGhpcyBjb2RlIHdpdGggYW55b25lLiBJZiB5b3UgZGlkIG5vdCBt
+                     YWtlIHRoaXMgcmVxdWVzdCwgcGxlYXNlIGlnbm9yZSB0aGlzIGVtYWlsLgoKSG9uZyBLb25nIElu
+                     dGVybmF0aW9uYWwgQWlycG9ydAo=';
+
         $this->setReflectionPropertyValue('startTimestamp', 1724932393.008985);
         $this->setReflectionPropertyValue('Mailer', 'mail');
         $this->setReflectionPropertyValue('to', [ 'john@doe.com', 'John Doe' ]);
@@ -35,7 +40,7 @@ class PHPMailerFailureHookTest extends PHPMailerTestCase
         $this->setReflectionPropertyValue('bcc', [ 'bcc@doe.com', 'BCC Doe' ]);
         $this->setReflectionPropertyValue('Subject', 'subject');
         $this->setReflectionPropertyValue('MIMEHeader', 'Content-Type: text/plain');
-        $this->setReflectionPropertyValue('MIMEBody', 'body');
+        $this->setReflectionPropertyValue('MIMEBody', $MIMEBody);
         $this->setReflectionPropertyValue('From', 'from');
         $this->setReflectionPropertyValue('analyticsDetailLevel', AnalyticsDetailLevel::Detailed);
 
@@ -76,7 +81,7 @@ class PHPMailerFailureHookTest extends PHPMailerTestCase
                         'executionTime'  => 1.12,
                         'url'            => 'localhost',
                         'requestHeaders' => '{"Content-Type":"text\/plain"}',
-                        'requestBody'    => 'body',
+                        'requestBody'    => base64_decode($MIMEBody),
                         'options'        => '[]'
                     ]);
 
@@ -103,6 +108,11 @@ class PHPMailerFailureHookTest extends PHPMailerTestCase
     {
         $this->mockFunction('microtime', fn() => 1724932394.128985);
 
+        $MIMEBody = 'SGksCllvdXIgTXlUQUcgb25lLXRpbWUgdmVyaWZpY2F0aW9uIGNvZGUgaXMKCjcwOTMzNiAKClBs
+                     ZWFzZSBkbyBub3Qgc2hhcmUgdGhpcyBjb2RlIHdpdGggYW55b25lLiBJZiB5b3UgZGlkIG5vdCBt
+                     YWtlIHRoaXMgcmVxdWVzdCwgcGxlYXNlIGlnbm9yZSB0aGlzIGVtYWlsLgoKSG9uZyBLb25nIElu
+                     dGVybmF0aW9uYWwgQWlycG9ydAo=';
+
         $this->setReflectionPropertyValue('startTimestamp', 1724932393.008985);
         $this->setReflectionPropertyValue('Mailer', 'smtp');
         $this->setReflectionPropertyValue('to', [[ 'john@doe.com', 'John Doe' ]]);
@@ -110,7 +120,7 @@ class PHPMailerFailureHookTest extends PHPMailerTestCase
         $this->setReflectionPropertyValue('bcc', [[ 'bcc@doe.com', 'BCC Doe' ]]);
         $this->setReflectionPropertyValue('Subject', 'subject');
         $this->setReflectionPropertyValue('MIMEHeader', 'Content-Type: text/plain');
-        $this->setReflectionPropertyValue('MIMEBody', 'body');
+        $this->setReflectionPropertyValue('MIMEBody', $MIMEBody);
         $this->setReflectionPropertyValue('From', 'from');
         $this->setReflectionPropertyValue('analyticsDetailLevel', AnalyticsDetailLevel::Detailed);
 
@@ -164,7 +174,7 @@ class PHPMailerFailureHookTest extends PHPMailerTestCase
                         'executionTime'  => 1.12,
                         'url'            => 'localhost',
                         'requestHeaders' => '{"Content-Type":"text\/plain"}',
-                        'requestBody'    => 'body',
+                        'requestBody'    => base64_decode($MIMEBody),
                         'options'        => json_encode($options),
                     ]);
 
